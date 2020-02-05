@@ -12,6 +12,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Publish tag to Registry    
+      uses: HurricanKai/Publish-Docker-Github-Action@master
       if: contains(github.ref, 'refs/tags/v')
       with:
         name: epicfile/umbli
