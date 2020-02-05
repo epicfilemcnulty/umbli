@@ -4,13 +4,13 @@ inputs:
   src:  # id of input
     description: 'The path to your code'
     required: false
-    default: '/github/workflow'
+    default: '/github/workspace'
   mode:
     description: 'Linter mode'
     required: false
     default: 'loose'  
 runs:
   using: 'docker'
-  image: 'docker://epicfile/umbli:latest'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.mode }}
