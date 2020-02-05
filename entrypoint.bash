@@ -13,6 +13,8 @@ say () {
 if [[ "${1}" == "strict" ]]; then
     set -euo pipefail
     say "Running in strict mode, every linting error causes immediate exit with an error code"
+else
+    say "Running in loose mode"
 fi
 
 CONFIG="${INPUT_CONFIG}/.umbli.sh"

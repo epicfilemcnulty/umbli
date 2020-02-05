@@ -1,7 +1,7 @@
 name: 'umbli'
 description: 'Runs popular linters against your project files'
 inputs:
-  src:  # id of input
+  config:  # id of input
     description: 'The path to your code'
     required: false
     default: '/github/workspace'
