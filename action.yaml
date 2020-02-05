@@ -4,7 +4,7 @@ inputs:
   config:  # id of input
     description: 'The path to your code'
     required: false
-    default: '/github/workspace'
+    default: '/github/workspace/.umbli.sh'
   mode:
     description: 'Linter mode'
     required: false

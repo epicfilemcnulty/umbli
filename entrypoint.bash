@@ -17,7 +17,7 @@ else
     say "Running in loose mode"
 fi
 
-CONFIG="${INPUT_CONFIG}/.umbli.sh"
+CONFIG="${CONFIG:-/github/workspace/.umbli.sh}"
 if [[ -f "${CONFIG}" ]]; then
     source "${CONFIG}"
 else
