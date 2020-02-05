@@ -1,0 +1,16 @@
+name: 'umbli'
+description: 'Runs popular linters against your project files'
+inputs:
+  src:  # id of input
+    description: 'The path to your code'
+    required: false
+    default: '/github/workflow'
+  mode:
+    description: 'Linter mode'
+    required: false
+    default: 'loose'  
+runs:
+  using: 'docker'
+  image: 'docker://epicfile/umbli:latest'
+  args:
+    - ${{ inputs.mode }}

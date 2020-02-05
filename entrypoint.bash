@@ -1,10 +1,5 @@
 #!/bin/bash
 
-UMBLI_CONFIG="${UMBLI_CONFIG:-/app/.umbli.sh}"
-if [[ -f "${UMBLI_CONFIG}" ]]; then
-    source "${UMBLI_CONFIG}"
-fi
-
 say () {
 
     echo
@@ -15,16 +10,30 @@ say () {
 
 }
 
-say "Running credentials scan"
-gitleaks
+if [[ "${1}" == "strict" ]]; then
+    set -euo pipefail
+    say "Running in strict mode, every linting error causes immediate exit with an error code"
+fi
+
+CONFIG="${INPUT_CONFIG}/.umbli.sh"
+if [[ -f "${CONFIG}" ]]; then
+    source "${CONFIG}"
+fi
+
+if [[ -v CREDS_SCAN ]]; then
+    say "Running credentials scan"
+    gitleaks
+fi
 
 if [[ -v SHELL_FILES ]]; then
     say "Linting shell files"
-    shellcheck -a -s bash ${SHELL_FILES[@]}
+    shellcheck --color -a -s bash ${SHELL_FILES[@]}
 fi
 
-say "Linting terraform files"
-tfsec
+if [[ -v TERRAFORM_FILES ]]; then
+    say "Linting terraform files"
+    tfsec
+fi
 
 if [[ -v ANSIBLE_FILES ]]; then
     say "Linting ansible files"
