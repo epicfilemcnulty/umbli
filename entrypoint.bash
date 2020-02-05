@@ -20,6 +20,9 @@ fi
 CONFIG="${INPUT_CONFIG}/.umbli.sh"
 if [[ -f "${CONFIG}" ]]; then
     source "${CONFIG}"
+else
+    echo "Config not found: ${CONFIG}"
+    exit 1
 fi
 
 if [[ -v CREDS_SCAN ]]; then
