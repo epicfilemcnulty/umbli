@@ -12,12 +12,12 @@ say () {
 
 if [[ "${1}" == "strict" ]]; then
     set -euo pipefail
-    say "Running in strict mode, every linting error causes immediate exit with an error code"
+    echo "*** Running in strict mode, every linting error causes immediate exit with an error code"
 else
-    say "Running in loose mode"
+    echo "** Running in loose mode"
 fi
 
-CONFIG="${CONFIG:-/github/workspace/.umbli.sh}"
+CONFIG="${CONFIG:-.umbli.sh}"
 if [[ -f "${CONFIG}" ]]; then
     source "${CONFIG}"
 else
