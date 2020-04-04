@@ -27,7 +27,7 @@ fi
 
 if [[ -v CREDS_SCAN ]]; then
     say "Running credentials scan"
-    gitleaks
+    gitleaks -v --repo-path=.
 fi
 
 if [[ -v SHELL_FILES ]]; then
@@ -43,6 +43,11 @@ fi
 if [[ -v ANSIBLE_FILES ]]; then
     say "Linting ansible files"
     ansible-lint --force-color --parseable-severity ${ANSIBLE_FILES[@]}
+fi
+
+if [[ -v HELM_FILES ]]; then
+   say "Linting helm charts"
+   helm lint ${HELM_FILES[@]}
 fi
 
 if [[ -v KUBE_FILES ]]; then
